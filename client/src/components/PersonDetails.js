@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../App.css';
 
 const PersonDetails = () => {
   const {id} = useParams();
-  const [person, setPerson] = useState({});
+  let [person, setPerson] = useState();
+
+  const fetchPerson = useCallback(async () => {
+    let response = await fetch('http://localhost:8080/api/people/' + id)
+    response = await response.json();
+    setPerson(response);
+},[id]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/people/' + id)
-    .then(res => {
-        if (res.status !== 200) {
-          console.log('PersonDetail problem. Status Code: ' + res.status);
-          return;
-        }
-        res.json().then(function(data) {
-          setPerson(data);
-        });
-      }
-    )
-    .catch(function(err) {
-      console.log('PersonDetail Fetch Error :-S', err);
-    });
-  }, [id]);
+    fetchPerson();
+  }, [fetchPerson]);
 
   function onDeleteClick (id) {
     fetch('http://localhost:8082/api/books/'+id, {
@@ -69,17 +62,17 @@ const PersonDetails = () => {
       <tr>
         <th scope="row">1</th>
         <td>First Name</td>
-        <td>{ person.first }</td>
+        <td>{ person?.name.first }</td>
       </tr>
           <tr>
             <th scope="row">2</th>
             <td>Last Name</td>
-            <td>{ person.last }</td>
+            <td>{ person?.name.last }</td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Registration Date</td>
-            <td>{ /*person.registered.date*/ }</td>
+            <td>{ person?.registered.date }</td>
           </tr>
         </tbody>
       </table>
@@ -88,11 +81,11 @@ const PersonDetails = () => {
 
           <div className="row">
             <div className="col-md-6">
-              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={() => onDeleteClick(person._id)}>Delete Person</button><br />
+              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={() => onDeleteClick(person?._id)}>Delete Person</button><br />
             </div>
 
             <div className="col-md-6">
-              <Link to={`/edit-person/${person._id}`} className="btn btn-outline-info btn-lg btn-block">
+              <Link to={`/edit-person/${person?._id}`} className="btn btn-outline-info btn-lg btn-block">
                     Edit Person
               </Link>
               <br />
