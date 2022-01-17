@@ -15,6 +15,7 @@ The functionality should allow a user to add, edit and delete people from the da
 Currently the application only has the functionality to display a person's details.
 
 ## Getting Started: Installation
+
 Go to your cloned project.
 
 Navigate to your project root directory. Open the project folder  Visual Code and open a terminal window.
@@ -24,6 +25,27 @@ To install the project dependencies, run the following command from the root dir
 ```
 npm run dev-install
 ```
+### Add Connection String / Config File
+
+In the folder [config](config), create a file called `default.config`
+
+Add the following lines of JSON:
+
+``` JSON
+{
+  "mongoURI": "<CONNECTION STRING TO MONGODB ATLAS INSTANCE>"
+
+}
+```
+Replace the mongoURI variable with a connection string to your MongoDB Atlas instance.
+
+To find your connection string in Visual Studio, connect to your instance of MongoDB Atlas and right click the server. 
+
+Click "Copy the connection string" to copy to your clipboard. 
+
+![Find your connection string](mongo-connection.png)
+
+Paste the string into your `default.config` file.
 
 ## Install Database Seed Data
 
