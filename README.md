@@ -27,21 +27,21 @@ npm run dev-install
 ```
 ### Add Connection String / Config File
 
-In the folder [config](config), create a file called `default.config`
+Add a folder to the root called `config`. Inside the config folder create a file called `default.config`.
 
 Add the following lines of JSON:
 
 ``` JSON
 {
   "mongoURI": "<CONNECTION STRING TO MONGODB ATLAS INSTANCE>"
-
 }
 ```
-Replace the mongoURI variable with a connection string to your MongoDB Atlas instance.
 
-To find your connection string in Visual Studio, connect to your instance of MongoDB Atlas and right click the server. 
+Replace the `mongoURI` parameter string with a connection string to your MongoDB Atlas instance.
 
-Click "Copy the connection string" to copy to your clipboard. 
+To find your connection string in Visual Studio Code, connect to your instance of MongoDB Atlas and right click the server. 
+
+Click _"Copy the connection string"_ to copy to your clipboard. 
 
 ![Find your connection string](mongo-connection.png)
 
