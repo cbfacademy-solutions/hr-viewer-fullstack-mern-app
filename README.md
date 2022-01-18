@@ -16,6 +16,12 @@ Currently the application only has the functionality to display a person's detai
 
 ## Getting Started: Installation
 
+Ensure you are running node version 16+
+
+```
+node -v
+```
+
 Go to your cloned project.
 
 Navigate to your project root directory. Open the project folder  Visual Code and open a terminal window.
@@ -27,7 +33,7 @@ npm run dev-install
 ```
 ### Add Connection String / Config File
 
-Add a folder to the root called `config`. Inside the config folder create a file called `default.config`.
+Add a folder to the root called `config`. Inside the config folder create a file called `default.json`.
 
 Add the following lines of JSON:
 
@@ -45,7 +51,9 @@ Click _"Copy the connection string"_ to copy to your clipboard.
 
 ![Find your connection string](mongo-connection.png)
 
-Paste the string into your `default.config` file.
+Paste the string into your `default.json` file.
+
+Ensure your connection string is referencing the `membership` database
 
 ## Install Database Seed Data
 
@@ -64,6 +72,18 @@ To start the application, run the following command:
 ```
 npm run develop
 ```
+
+If your application is not working with the following error:
+
+```
+Error: error:0308010C:digital envelope routines::unsupported
+```
+
+Add the following flag to to your [/client/package.json](client/package.json) start command:
+
+```JSON
+"start": "react-scripts --openssl-legacy-provider start"
+```  
 
 ## Task:
 
