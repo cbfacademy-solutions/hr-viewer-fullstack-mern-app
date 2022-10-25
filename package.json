@@ -19,7 +19,7 @@
     "config": "^3.3.8",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "mongoose": "^6.1.5",
+    "mongoose": "^6.4.6",
     "validation": "^0.0.1"
   },
   "devDependencies": {
