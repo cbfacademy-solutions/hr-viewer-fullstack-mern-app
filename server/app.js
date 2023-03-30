@@ -1,20 +1,22 @@
-const express = require('express');
-const connectDB = require('./database/db');
-const cors = require('cors');
-const people = require('./api/people');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const mongoDB = require("./database/db");
+const people = require("./api/people");
 
 const app = express();
-
-// Connect Database
-connectDB();
+const database = process.env.MONGODB_DATABASE;
+const url = process.env.MONGODB_URI;
+const port = process.env.PORT || 8080;
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
+app.use("/api/people", people);
 
-app.get('/', (req, res) => res.send('Hello world!'));
 
-app.use('/api/people', people);
-
-const port = process.env.PORT || 8080;
-
-app.listen(port, () => console.log(`App running on port http://localhost:${port}`));
+// Connect Database
+mongoDB.connect(url, database, () => {
+  app.listen(port, () => {
+    console.log(`App running on port http://localhost:${port}`);
+  });
+});
