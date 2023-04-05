@@ -8,7 +8,7 @@
     "start": "node server/app.js",
     "client": "npm run start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-install": "npm install && cd client && npm install && cd ..",
+    "dev-install": "rm -rf node_modules npm install && cd client && rm -rf node_modules && npm install && cd ..",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "author": "Efua Akumanyi (efuaakumanyi.com)",
@@ -16,10 +16,10 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
-    "config": "^3.3.9",
+    "dotenv": "^16.0.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^6.9.1",
+    "mongodb": "^5.1.0",
     "validation": "^0.0.1"
   },
   "devDependencies": {

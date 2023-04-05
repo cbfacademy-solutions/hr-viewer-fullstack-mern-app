@@ -31,35 +31,38 @@ To install the project dependencies, run the following command from the root dir
 ```
 npm run dev-install
 ```
-### Add Connection String / Config File
 
-Add a folder to the root called `config`. Inside the config folder create a file called `default.json`.
+### Environment variables
 
-Add the following lines of JSON:
+We have provided you with an example environment variables file called [`.env.example`](./.env.example). Make a copy of this file called `.env` to use it.
 
-``` JSON
-{
-  "mongoURI": "<CONNECTION STRING TO MONGODB ATLAS INSTANCE>"
-}
-```
+In here, you should copy your database connection string (which you can get from the MongoDB Atlas site or VS Code) to the `MONGODB_URI` variable.
 
-Replace the `mongoURI` parameter string with a connection string to your MongoDB Atlas instance.
-
-To find your connection string in Visual Studio Code, connect to your instance of MongoDB Atlas and right click the server. 
-
-Click _"Copy the connection string"_ to copy to your clipboard. 
+To find your connection string in Visual Studio Code, open the MongoDB extension, right-click on the connection for your instance of MongoDB Atlas and select _"Copy Connection String"_.
 
 ![Find your connection string](mongo-connection.png)
 
-Paste the string into your `default.json` file.
+Make sure your connection string follows this format:
 
-Ensure your connection string is referencing the `membership` database
+```plain
+mongodb+srv://<username>:<password>@<cluster id>.mongodb.net
+```
+
+If your connection string has a database name appended as below, remove it:
+
+```plain
+mongodb+srv://<username>:<password>@<cluster id>.mongodb.net/<database name>
+```
+
+You'll also see the `MONGODB_DATABASE` value in this file. Do not change this value.
+
+🛑 **YOUR ENVIRONMENT VARIABLES SHOULD NEVER BE COMMITED AND THE `.env` FILE HAS ALREADY BEEN ADDED TO THE [`.gitignore`](./.gitignore).** 🛑
 
 ## Install Database Seed Data
 
 Open Visual Studio Code. Ensure you are connected to your MongoDB Instance.
 
-Open the seed data file [membership.mongodb](/server/seed/membership.mongodb) in Visual Studio and run the file to install people collection.
+Open the seed data file [membership.mongodb](/server/seed/membership.mongodb) in Visual Studio and run the file to install the `people` collection.
 
 Once installed you should see 11 records in your MongoDB instance:
 
